@@ -37,6 +37,7 @@ LOCAL_SRC_FILES := \
 	$(NVC0_C_SOURCES)
 
 LOCAL_C_INCLUDES := \
+	$(MESA_TOP)/src \
 	$(TARGET_OUT_HEADERS)/libdrm
 
 LOCAL_MODULE := libmesa_pipe_nouveau
