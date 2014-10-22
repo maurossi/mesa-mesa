@@ -7,7 +7,7 @@ Forked from unofficial mirror of freedesktop mesa repository, which is updated d
 There are two commits in the github repo:
 
 1) Gallium nouveu source corrections and main format_info.h header file
-Explanation: I could not build format_info.c generated fragment of code, because Android buildchain wants to compile the fragment, I simply renamed the generated fragment as format_info.h and changed the #include in format.c file accordingly.
+Explanation: I could not build format.c because of format_info.c (generated fragment of code), because Android buildchain wants to compile the fragment, which is not possible, I simply renamed the generated fragment as format_info.h and changed the #include in format.c file accordingly. NOTE: C by the book suggestion is to name code fragments as .h as best practice.
 
 2) Android makefiles changes to build 10.3.1
 Explanation: mainly Android make files includes paths and generation of format_info.h instead of format_info.c accordingly to previous commit.
