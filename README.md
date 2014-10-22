@@ -12,15 +12,22 @@ In order to build mesa 10.3.1 with Android-x86:
 
 https://github.com/evelikov/hardware_drm_gralloc or https://github.com/pstglia/drm_gralloc
 
-- revert commits that introduced tr1/unordered_set, because STLport does not support all types in its own tr1/unordered_set implementation.
+- revert commits that introduced tr1/unordered_set, because STLport does not support all types in its own tr1/unordered_set implementation and gnu_stl, libc++ or boost libs integration not yet successful.
 
-git revert ...
-git revert ...
-git revert ...
-git revert ...
+git revert fb4e23626f9f27c62aa1cbea05a1c8b088fcf49a [committed on ...]
+
+git revert bb06f2cd93e8e16798bd59b458abd8d33a8e4658 [committed on 08-Sep-2014]
+git revert a9b21015f5e3a6a37e53a8b3c755519f7b70479e [committed on 08-Jul-2014]
+git revert eaa9e14ce5a3e69c6aa303f2e5f039c1cc0b8de1 [committed on 29-Aug-2014]
+
 
 Limitations:
 
 - Android.mk files not yet ready for supporting gallium radeonsi driver in device/generic/x86/BoardConfig.mk
-- gallium nouveau can be built with tr1 code reverted, but still unstable apparently due to buffer objects invalid addresses and/or GPU locking, missing GPU registers initialization code.
+- gallium nouveau can be built with tr1 code reverted, because of STLport but still unstable apparently due to buffer objects invalid addresses and/or GPU locking, missing GPU registers initialization code.
 - gallium r300, r600 can build and seem to be working on HD4xxx and HD5xxx, but still not extensively tested
+- intel i915, i965 classic drivers not working (GUI is there but "rendered in black"). ilo working, but to be tested, while i915g gallium driver is still veeery slow.
+ 
+Any feedback/suggestion is appreciated expecially on tr1/unordered_set compiling support with current AOSP toolchain, or Android NDK latest GCC versions.
+
+Mauro
