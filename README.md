@@ -8,11 +8,11 @@ In order to build mesa 10.3.1 with Android-x86:
 
 - replace external/drm with libdrm 2.4.58
 
-- if you want to try experimental drm_gralloc_nouveau, replace hardware/drm_gralloc, using one of following gits:
+- if you want to try experimental drm_gralloc_nouveau and add nouveau in device/generic/x86/BoardConfig.mk, replace hardware/drm_gralloc, using one of following gits:
 
 https://github.com/evelikov/hardware_drm_gralloc or https://github.com/pstglia/drm_gralloc
 
-- revert commits that introduced tr1/unordered_set, because STLport does not support all types with its tr1/unordered_set implementation.
+- revert commits that introduced tr1/unordered_set, because STLport does not support all types in its own tr1/unordered_set implementation.
 
 git revert ...
 git revert ...
