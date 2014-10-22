@@ -4,7 +4,7 @@ mesa-mesa
 Repo with changes to build with Android-x86
 Forked from unofficial mirror of freedesktop mesa repository which is updated daily.
 
-In order to build mesa 10.3.1 with Android-x86:
+In order to build mesa 10.4.0 with Android-x86:
 
 - replace external/drm with libdrm 2.4.58
 
@@ -14,11 +14,10 @@ https://github.com/evelikov/hardware_drm_gralloc or https://github.com/pstglia/d
 
 - revert commits that introduced tr1/unordered_set, because STLport does not support all types in its own tr1/unordered_set implementation and gnu_stl, libc++ or boost libs integration not yet successful.
 
-git revert fb4e23626f9f27c62aa1cbea05a1c8b088fcf49a [committed on ...]
-
-git revert bb06f2cd93e8e16798bd59b458abd8d33a8e4658 [committed on 08-Sep-2014]
-git revert a9b21015f5e3a6a37e53a8b3c755519f7b70479e [committed on 08-Jul-2014]
-git revert eaa9e14ce5a3e69c6aa303f2e5f039c1cc0b8de1 [committed on 29-Aug-2014]
+git revert b4df9d99604201d1d9924c91df9fbbcee269f828 [committed on 26-Sep-2014] v
+git revert ca9ab05d45ebf407485af2daa3742b897ff99162 [committed on 06-Sep-2014] v
+git revert c4bb436f7660c951cd27e52660cf825da68793e5 [committed on 01-Set-2014] v
+git revert a9b21015f5e3a6a37e53a8b3c755519f7b70479e [committed on 08-Jul-2014] v
 
 
 Limitations:
