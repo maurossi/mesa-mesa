@@ -25,7 +25,7 @@
 # ---------------------------------------------------------------------
 
 ifeq ($(strip $(MESA_ENABLE_ASM)),true)
-ifeq ($(TARGET_ARCH),x86)
+ifeq ($(TARGET_ARCH), $(filter $(TARGET_ARCH),x86 x86_64))
 
 LOCAL_PATH := $(call my-dir)
 
@@ -46,5 +46,5 @@ LOCAL_SRC_FILES := \
 include $(MESA_COMMON_MK)
 include $(BUILD_HOST_EXECUTABLE)
 
-endif # x86
+endif # x86 x86_64
 endif # MESA_ENABLE_ASM

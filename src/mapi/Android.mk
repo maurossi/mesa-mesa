@@ -53,8 +53,8 @@ LOCAL_C_INCLUDES := \
 LOCAL_MODULE := libglapi
 
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-intermediates := $(call local-intermediates-dir)
-abi_header := $(intermediates)/$(abi_header)
+generated := $(call local-generated-sources-dir)
+abi_header := $(generated)/$(abi_header)
 LOCAL_GENERATED_SOURCES := $(abi_header)
 
 $(abi_header): PRIVATE_PRINTER := shared-glapi

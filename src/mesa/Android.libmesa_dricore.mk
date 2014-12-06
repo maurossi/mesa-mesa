@@ -30,7 +30,7 @@ LOCAL_PATH := $(call my-dir)
 
 # Import the following variables:
 #     MESA_FILES
-#     X86_FILES
+#     X86_FILES X86_64_FILES
 include $(LOCAL_PATH)/Makefile.sources
 SRCDIR :=
 BUILDDIR :=
@@ -44,9 +44,12 @@ LOCAL_SRC_FILES := \
 	$(MESA_FILES)
 
 ifeq ($(strip $(MESA_ENABLE_ASM)),true)
-ifeq ($(TARGET_ARCH),x86)
+ifeq ($(TARGET_ARCH), x86)
 	LOCAL_SRC_FILES += $(X86_FILES)
 endif # x86
+ifeq ($(TARGET_ARCH), x86_64)
+	LOCAL_SRC_FILES += $(X86_64_FILES)
+endif # x86_64
 endif # MESA_ENABLE_ASM
 
 ifeq ($(ARCH_X86_HAVE_SSE4_1),true)

@@ -56,7 +56,7 @@ endif
 
 # host and target must be the same arch to generate matypes.h
 ifeq ($(TARGET_ARCH),$(HOST_ARCH))
-MESA_ENABLE_ASM := true
+MESA_ENABLE_ASM := false
 else
 MESA_ENABLE_ASM := false
 endif

@@ -38,18 +38,18 @@ LOCAL_MODULE := libmesa_gallium
 
 # generate sources
 LOCAL_MODULE_CLASS := STATIC_LIBRARIES
-intermediates := $(call local-intermediates-dir)
-LOCAL_GENERATED_SOURCES := $(addprefix $(intermediates)/, $(GENERATED_SOURCES))
+generated := $(call local-generated-sources-dir)
+LOCAL_GENERATED_SOURCES := $(addprefix $(generated)/, $(GENERATED_SOURCES))
 
 $(LOCAL_GENERATED_SOURCES): PRIVATE_PYTHON := $(MESA_PYTHON2)
 $(LOCAL_GENERATED_SOURCES): PRIVATE_CUSTOM_TOOL = $(PRIVATE_PYTHON) $^ > $@
 
-$(intermediates)/indices/u_indices_gen.c \
-$(intermediates)/indices/u_unfilled_gen.c \
-$(intermediates)/util/u_format_srgb.c: $(intermediates)/%.c: $(LOCAL_PATH)/%.py
+$(generated)/indices/u_indices_gen.c \
+$(generated)/indices/u_unfilled_gen.c \
+$(generated)/util/u_format_srgb.c: $(generated)/%.c: $(LOCAL_PATH)/%.py
 	$(transform-generated-source)
 
-$(intermediates)/util/u_format_table.c: $(intermediates)/%.c: $(LOCAL_PATH)/%.py $(LOCAL_PATH)/util/u_format.csv
+$(generated)/util/u_format_table.c: $(generated)/%.c: $(LOCAL_PATH)/%.py $(LOCAL_PATH)/util/u_format.csv
 	$(transform-generated-source)
 
 include $(GALLIUM_COMMON_MK)
