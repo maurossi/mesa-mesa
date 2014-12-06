@@ -46,13 +46,17 @@ LOCAL_CFLAGS += \
 	-Wno-sign-compare
 
 ifeq ($(strip $(MESA_ENABLE_ASM)),true)
-ifeq ($(TARGET_ARCH),x86)
+ifeq ($(TARGET_ARCH), x86)
 LOCAL_CFLAGS += \
-	-DUSE_X86_ASM \
-	-DHAVE_DLOPEN \
-
-endif
-endif
+	-DUSE_X86_ASM -DUSE_MMX_ASM -DUSE_3DNOW_ASM -DUSE_SSE_ASM \
+	-DHAVE_DLOPEN
+endif # x86
+ifeq ($(TARGET_ARCH), x86_64)
+LOCAL_CFLAGS += \
+	-DUSE_X86_64_ASM \
+	-DHAVE_DLOPEN
+endif # x86_64
+endif # MESA_ENABLE_ASM
 
 LOCAL_CPPFLAGS += \
 	-Wno-error=non-virtual-dtor \

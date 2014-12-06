@@ -34,29 +34,29 @@ include $(LOCAL_PATH)/Makefile.sources
 LOCAL_MODULE := libmesa_dri_common
 LOCAL_MODULE_CLASS := STATIC_LIBRARIES
 
-intermediates := $(call local-intermediates-dir)
+generated := $(call local-generated-sources-dir)
 
 LOCAL_C_INCLUDES := \
-    $(intermediates) \
+    $(generated) \
     $(MESA_DRI_C_INCLUDES)
 
 LOCAL_SRC_FILES := $(DRI_COMMON_FILES)
 
 LOCAL_GENERATED_SOURCES := \
-    $(intermediates)/xmlpool/options.h
+    $(generated)/xmlpool/options.h
 
 #
 # Generate options.h from gettext translations.
 #
 
 MESA_DRI_OPTIONS_LANGS := de es nl fr sv
-POT := $(intermediates)/xmlpool.pot
+POT := $(generated)/xmlpool.pot
 
 $(POT): $(LOCAL_PATH)/xmlpool/t_options.h
 	@mkdir -p $(dir $@)
 	xgettext -L C --from-code utf-8 -o $@ $<
 
-$(intermediates)/xmlpool/%.po: $(LOCAL_PATH)/xmlpool/%.po $(POT)
+$(generated)/xmlpool/%.po: $(LOCAL_PATH)/xmlpool/%.po $(POT)
 	lang=$(basename $(notdir $@)); \
 	mkdir -p $(dir $@); \
 	if [ -f $< ]; then \
@@ -69,16 +69,16 @@ $(intermediates)/xmlpool/%.po: $(LOCAL_PATH)/xmlpool/%.po $(POT)
 		sed -i -e 's/charset=.*\\n/charset=UTF-8\\n/' $@; \
 	fi
 
-$(intermediates)/xmlpool/%/LC_MESSAGES/options.mo: $(intermediates)/xmlpool/%.po
+$(generated)/xmlpool/%/LC_MESSAGES/options.mo: $(generated)/xmlpool/%.po
 	mkdir -p $(dir $@)
 	msgfmt -o $@ $<
 
-$(intermediates)/xmlpool/options.h: PRIVATE_SCRIPT := $(LOCAL_PATH)/xmlpool/gen_xmlpool.py
-$(intermediates)/xmlpool/options.h: PRIVATE_LOCALEDIR := $(intermediates)/xmlpool
-$(intermediates)/xmlpool/options.h: PRIVATE_TEMPLATE_HEADER := $(LOCAL_PATH)/xmlpool/t_options.h
-$(intermediates)/xmlpool/options.h: PRIVATE_MO_FILES := $(MESA_DRI_OPTIONS_LANGS:%=$(intermediates)/xmlpool/%/LC_MESSAGES/options.mo)
+$(generated)/xmlpool/options.h: PRIVATE_SCRIPT := $(LOCAL_PATH)/xmlpool/gen_xmlpool.py
+$(generated)/xmlpool/options.h: PRIVATE_LOCALEDIR := $(generated)/xmlpool
+$(generated)/xmlpool/options.h: PRIVATE_TEMPLATE_HEADER := $(LOCAL_PATH)/xmlpool/t_options.h
+$(generated)/xmlpool/options.h: PRIVATE_MO_FILES := $(MESA_DRI_OPTIONS_LANGS:%=$(generated)/xmlpool/%/LC_MESSAGES/options.mo)
 .SECONDEXPANSION:
-$(intermediates)/xmlpool/options.h: $$(PRIVATE_SCRIPT) $$(PRIVATE_TEMPLATE_HEADER) $$(PRIVATE_MO_FILES)
+$(generated)/xmlpool/options.h: $$(PRIVATE_SCRIPT) $$(PRIVATE_TEMPLATE_HEADER) $$(PRIVATE_MO_FILES)
 	mkdir -p $(dir $@)
 	mkdir -p $(PRIVATE_LOCALEDIR)
 	$(MESA_PYTHON2) $(PRIVATE_SCRIPT) $(PRIVATE_TEMPLATE_HEADER) \
