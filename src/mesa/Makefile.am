@@ -82,7 +82,7 @@ main/get_hash.h: $(GLAPI)/gl_and_es_API.xml main/get_hash_params.py 	\
 		-f $< > $@.tmp;						\
 	mv $@.tmp $@;
 
-main/format_info.c: main/formats.csv                                    \
+main/format_info.h: main/formats.csv                                    \
                     main/format_parser.py main/format_info.py
 	$(AM_V_GEN)set -e;						\
 	$(PYTHON2) $(PYTHON_FLAGS) $(srcdir)/main/format_info.py        \
