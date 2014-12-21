@@ -43,7 +43,8 @@ LOCAL_CFLAGS += \
 LOCAL_CFLAGS += \
 	-DHAVE_PTHREAD=1 \
 	-fvisibility=hidden \
-	-Wno-sign-compare
+	-Wno-sign-compare \
+	-Wno-error=return-type
 
 ifeq ($(strip $(MESA_ENABLE_ASM)),true)
 ifeq ($(TARGET_ARCH), x86)
@@ -60,7 +61,8 @@ endif # MESA_ENABLE_ASM
 
 LOCAL_CPPFLAGS += \
 	-Wno-error=non-virtual-dtor \
-	-Wno-non-virtual-dtor
+	-Wno-non-virtual-dtor \
+	-Wno-error=return-type
 
 # uncomment to keep the debug symbols
 #LOCAL_STRIP_MODULE := false
