@@ -13,13 +13,6 @@ In order to build android_x86 and android_x86_64:
 http://www.mediafire.com/download/v80zdvc4atqh5g8/Android.mk http://www.mediafire.com/view/xd1ccujwsri33po/format_srgb.c
 
 
-
-NOUVEAU EXPERIMENTAL If you want to try experimental drm_gralloc_nouveau and add nouveau in device/generic/x86/BoardConfig.mk, you can use the following github hardware/drm_gralloc, using one of following gits:
-
-https://github.com/maurossi/hardware_drm_gralloc
-
-
-
 2) revert commits that introduced tr1/unordered_set, because STLport does not support all needed types in its own tr1/unordered_set implementation and gnu_stl, libc++ or boost libs integration not yet successful.
 
 
@@ -35,15 +28,21 @@ git revert a9b21015f5e3a6a37e53a8b3c755519f7b70479e
 NOUVEAU other changes needed to build android_x86 and android_x86_64 targets:
 -----------------------------------------------------------------------------
 
-- kernel config: disable FB_NVIDIA and FB_RIVA modules as they can interfere with NOUVEAU_DRM
-# CONFIG_FB_NVIDIA is not set
-# CONFIG_FB_RIVA is not set
+NOUVEAU EXPERIMENTAL If you want to try experimental drm_gralloc_nouveau and add nouveau in device/generic/x86/BoardConfig.mk, you can use the following github hardware/drm_gralloc, using one of following gits:
 
-- use this drm_gralloc: https://github.com/maurossi/hardware_drm_gralloc
+https://github.com/maurossi/hardware_drm_gralloc
 
-- device/generic/common/init.sh: line 103     	0*inteldrmfb|0*radeondrmfb|0*nouveaufb)
 
-- device/generic/common/BoardConfig.mk add nouveau to line 68:  BOARD_GPU_DRIVERS ?= i915 i965 swrast r300g r600g nouveau
+* kernel config: disable FB_NVIDIA and FB_RIVA modules as they can interfere with NOUVEAU_DRM:
+
+#CONFIG_FB_NVIDIA is not set
+#CONFIG_FB_RIVA is not set
+
+* use this github as hardware/drm_gralloc: https://github.com/maurossi/hardware_drm_gralloc
+
+* device/generic/common/init.sh add check for nouveaufb at line 103:     	0*inteldrmfb|0*radeondrmfb|0*nouveaufb)
+
+* device/generic/common/BoardConfig.mk add nouveau to line 68:  BOARD_GPU_DRIVERS ?= i915 i965 swrast r300g r600g nouveau
 
 
 Limitations:
