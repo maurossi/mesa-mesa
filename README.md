@@ -34,8 +34,8 @@ https://github.com/maurossi/hardware_drm_gralloc
 
 * kernel config: disable FB_NVIDIA and FB_RIVA modules as they can interfere with NOUVEAU_DRM:
 
-##CONFIG_FB_NVIDIA is not set
-##CONFIG_FB_RIVA is not set
+ #CONFIG_FB_NVIDIA is not set
+ #CONFIG_FB_RIVA is not set
 
 * use this github as hardware/drm_gralloc: https://github.com/maurossi/hardware_drm_gralloc
 
