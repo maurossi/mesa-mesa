@@ -39,8 +39,9 @@ LOCAL_CFLAGS := \
 
 LOCAL_C_INCLUDES := \
 	$(GALLIUM_TOP)/state_trackers/egl \
-	$(GALLIUM_TOP)/winsys \
-	$(MESA_TOP)/src/egl/main
+	$(GALLIUM_TOP)/winsys/sw \
+	$(MESA_TOP)/src/egl/main \
+	system/core/libsync/include
 
 # swrast only
 ifeq ($(MESA_GPU_DRIVERS),swrast)
