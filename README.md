@@ -32,7 +32,22 @@ git revert eaa9e14ce5a3e69c6aa303f2e5f039c1cc0b8de1
 git revert a9b21015f5e3a6a37e53a8b3c755519f7b70479e
 
 
+NOUVEAU other changes needed to build android_x86 and android_x86_64 targets:
+-----------------------------------------------------------------------------
+
+- kernel config: disable FB_NVIDIA and FB_RIVA modules as they can interfere with NOUVEAU_DRM
+# CONFIG_FB_NVIDIA is not set
+# CONFIG_FB_RIVA is not set
+
+- use this drm_gralloc: https://github.com/maurossi/hardware_drm_gralloc
+
+- device/generic/common/init.sh: line 103     	0*inteldrmfb|0*radeondrmfb|0*nouveaufb)
+
+- device/generic/common/BoardConfig.mk add nouveau to line 68:  BOARD_GPU_DRIVERS ?= i915 i965 swrast r300g r600g nouveau
+
+
 Limitations:
+------------
 
 gallium r300, r600 can build and seem to be working on HD4xxx and HD5xxx, but still not extensively tested gallium radeonsi building not yet achieved for Android-x86 gallium nouveau can be built, provided that tr1 code is reverted, because of STLport lack of supporting size_t drm_gralloc_nouveau is still unstable apparently due to buffer objects invalid addresses and/or GPU locking, missing GPU registers initialization code. intel i915, i965 classic drivers not working properly (GUI is there, but with heavy geometry artifacts). ilo may work (not tested), while i915g gallium driver (not tested) should be still veeery slow.
 
