@@ -64,7 +64,7 @@ include Makefile.sources
 
 BUILT_SOURCES = \
 	main/get_hash.h \
-        main/format_info.c \
+        main/format_info.h \
 	$(BUILDDIR)main/git_sha1.h \
 	$(BUILDDIR)program/program_parse.tab.c \
 	$(BUILDDIR)program/lex.yy.c

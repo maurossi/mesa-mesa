@@ -40,7 +40,9 @@ LOCAL_C_INCLUDES := \
 	$(GALLIUM_TOP)/state_trackers/egl \
 	$(MESA_TOP)/src/egl/main \
 	$(MESA_TOP)/src/loader \
-	$(MESA_TOP)/src/mesa
+	$(MESA_TOP)/src/mesa \
+	$(DRM_TOP) \
+	$(DRM_TOP)/include/drm
 
 # swrast
 LOCAL_CFLAGS += -DGALLIUM_SOFTPIPE
