@@ -40,16 +40,17 @@ LOCAL_C_INCLUDES := \
 	$(GALLIUM_TOP)/state_trackers/egl \
 	$(MESA_TOP)/src/egl/main \
 	$(MESA_TOP)/src/loader \
-	$(MESA_TOP)/src/mesa \
-	$(DRM_TOP) \
-	$(DRM_TOP)/include/drm
+	$(MESA_TOP)/src/mesa
 
 # swrast
 LOCAL_CFLAGS += -DGALLIUM_SOFTPIPE
 
 # !swrast only
 ifneq ($(MESA_GPU_DRIVERS),swrast)
-LOCAL_C_INCLUDES += $(TARGET_OUT_HEADERS)/libdrm
+LOCAL_C_INCLUDES += \
+	$(DRM_TOP) \
+	$(DRM_TOP)/include/drm \
+	$(DRM_TOP)/radeon
 endif
 
 ifneq ($(filter freedreno, $(MESA_GPU_DRIVERS)),)
