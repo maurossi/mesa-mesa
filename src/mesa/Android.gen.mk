@@ -84,7 +84,7 @@ matypes_deps := \
 
 $(intermediates)/x86/matypes.h: $(matypes_deps) 
 	@mkdir -p $(dir $@)
-	@echo "MATYPES: $(PRIVATE_MODULE) <= $(notdir $@)"
+	@echo "MATYPES: $(PRIVATE_MODULE) <= $(notdir $(@))"
 	$(hide) $< > $@
 
 $(intermediates)/main/dispatch.h: PRIVATE_SCRIPT := $(MESA_PYTHON2) $(glapi)/gl_table.py
@@ -118,10 +118,13 @@ $(intermediates)/main/get_hash.h: $(glapi)/gl_and_es_API.xml \
 	@$(MESA_PYTHON2) $(GET_HASH_GEN) -f $< > $@
 
 FORMAT_INFO := $(LOCAL_PATH)/main/format_info.py
+
 format_info_deps := \
 	$(LOCAL_PATH)/main/formats.csv \
 	$(LOCAL_PATH)/main/format_parser.py \
 	$(FORMAT_INFO)
 
 $(intermediates)/main/format_info.h: $(format_info_deps)
-	@$(MESA_PYTHON2) $(FORMAT_INFO) $< > $@
+	@mkdir -p $(dir $@)
+	@echo "Gen FILE: $(PRIVATE_MODULE) <= $(notdir $(@))"
+	$(hide) @$(MESA_PYTHON2) $(FORMAT_INFO) $< > $@
