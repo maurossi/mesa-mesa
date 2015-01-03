@@ -37,6 +37,7 @@ LOCAL_CFLAGS := \
 	-DHAVE_ANDROID_PLATFORM
 
 LOCAL_C_INCLUDES := \
+	system/core/libsync/include \
 	$(MESA_TOP)/src/mapi \
 	$(MESA_TOP)/src/egl/main \
 	$(MESA_TOP)/src/loader \
