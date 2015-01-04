@@ -120,6 +120,7 @@ LOCAL_SHARED_LIBRARIES += libstlport
 endif # r600g
 ifneq ($(filter radeonsi, $(MESA_GPU_DRIVERS)),)
 gallium_DRIVERS += libmesa_pipe_radeonsi
+LOCAL_SHARED_LIBRARIES += libLLVM
 endif # radeonsi
 gallium_DRIVERS += libmesa_pipe_radeon
 endif # r600g || radeonsi

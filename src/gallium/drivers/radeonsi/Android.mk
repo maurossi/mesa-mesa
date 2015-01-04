@@ -30,7 +30,13 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := $(C_SOURCES)
 
-LOCAL_C_INCLUDES := $(TARGET_OUT_HEADERS)/libdrm
+LOCAL_C_INCLUDES := \
+		$(TARGET_OUT_HEADERS)/libdrm \
+		${LLVM_TOP} \
+		${LLVM_TOP}/include \
+		$(LLVM_TOP)/device/include
+
+LOCAL_SHARED_LIBRARIES := libLLVM
 
 LOCAL_MODULE := libmesa_pipe_radeonsi
 

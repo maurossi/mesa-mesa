@@ -28,11 +28,24 @@ include $(LOCAL_PATH)/Makefile.sources
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := $(C_SOURCES)
+LOCAL_SRC_FILES := \
+	$(C_SOURCES)
+
+ifneq ($(filter radeonsi, $(MESA_GPU_DRIVERS)),)
+LOCAL_SRC_FILES += \
+	$(GALLIVM_SOURCES) \
+	$(GALLIVM_CPP_SOURCES)
+LOCAL_SHARED_LIBRARIES := \
+	libLLVM
+endif
 
 LOCAL_C_INCLUDES := \
 	$(GALLIUM_TOP)/auxiliary/util \
-	$(MESA_TOP)/src
+	$(MESA_TOP)/src \
+	${LLVM_TOP} \
+	${LLVM_TOP}/include \
+	${LLVM_TOP}/device/include \
+	${ELFUTILS_TOP}/libelf
 
 LOCAL_MODULE := libmesa_gallium
 

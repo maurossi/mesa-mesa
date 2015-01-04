@@ -40,6 +40,14 @@ LOCAL_CFLAGS += \
 	-DPACKAGE_BUGREPORT=\"https://bugs.freedesktop.org/enter_bug.cgi?product=Mesa\" \
 	-DANDROID_VERSION=0x0$(MESA_ANDROID_MAJOR_VERSION)0$(MESA_ANDROID_MINOR_VERSION)
 
+ifneq ($(filter radeonsi, $(MESA_GPU_DRIVERS)),)	# LLVM needed for radeonsi
+LOCAL_CFLAGS += \
+	-D__STDC_LIMIT_MACROS \
+	-D__STDC_CONSTANT_MACROS \
+	-DHAVE_LLVM=0x0305 \
+	-DLLVM_VERSION_PATCH=0
+endif
+
 LOCAL_CFLAGS += \
 	-DHAVE_PTHREAD=1 \
 	-fvisibility=hidden \
@@ -59,6 +67,12 @@ LOCAL_CPPFLAGS += \
 	-Wno-error=non-virtual-dtor \
 	-Wno-non-virtual-dtor \
 	-Wno-error=return-type
+
+ifneq ($(filter radeonsi, $(MESA_GPU_DRIVERS)),)	# LLVM needed for radeonsi
+LOCAL_CPPFLAGS += \
+	-DHAVE_LLVM=0x0305 \
+	-DLLVM_VERSION_PATCH=0
+endif
 
 # uncomment to keep the debug symbols
 #LOCAL_STRIP_MODULE := false

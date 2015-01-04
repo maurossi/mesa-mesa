@@ -28,9 +28,21 @@ include $(LOCAL_PATH)/Makefile.sources
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := $(C_SOURCES)
+LOCAL_SRC_FILES := \
+	$(C_SOURCES)
 
-LOCAL_C_INCLUDES := $(TARGET_OUT_HEADERS)/libdrm
+ifneq ($(filter radeonsi, $(MESA_GPU_DRIVERS)),)
+LOCAL_SRC_FILES += \
+	$(LLVM_C_FILES)
+LOCAL_SHARED_LIBRARIES := libLLVM
+endif
+
+LOCAL_C_INCLUDES := \
+	$(TARGET_OUT_HEADERS)/libdrm \
+	${LLVM_TOP} \
+	${LLVM_TOP}/include \
+	${LLVM_TOP}/device/include \
+	${ELFUTILS_TOP}/libelf
 
 LOCAL_MODULE := libmesa_pipe_radeon
 
