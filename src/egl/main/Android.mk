@@ -67,6 +67,7 @@ LOCAL_SHARED_LIBRARIES := \
 	liblog \
 	libcutils \
 	libgralloc_drm \
+	libgnustl_shared
 
 ifeq ($(shell echo "$(MESA_ANDROID_VERSION) >= 4.2" | bc),1)
 LOCAL_SHARED_LIBRARIES += libsync
@@ -117,7 +118,6 @@ endif
 ifneq ($(filter nouveau, $(MESA_GPU_DRIVERS)),)
 gallium_DRIVERS +=  libmesa_winsys_nouveau libmesa_pipe_nouveau
 LOCAL_SHARED_LIBRARIES += libdrm_nouveau
-LOCAL_SHARED_LIBRARIES += libstlport
 endif
 
 # r300g/r600g/radeonsi
@@ -129,8 +129,8 @@ gallium_DRIVERS += libmesa_pipe_r300
 endif # r300g
 ifneq ($(filter r600g radeonsi, $(MESA_GPU_DRIVERS)),)
 ifneq ($(filter r600g, $(MESA_GPU_DRIVERS)),)
-gallium_DRIVERS += libmesa_pipe_r600
-LOCAL_SHARED_LIBRARIES += libstlport
+gallium_DRIVERS += libmesa_pipe_r600 libmesa_pipe_radeon
+LOCAL_SHARED_LIBRARIES += libstlport libdrm_radeon
 endif # r600g
 ifneq ($(filter radeonsi, $(MESA_GPU_DRIVERS)),)
 gallium_DRIVERS += libmesa_pipe_radeonsi
