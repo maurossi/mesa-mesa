@@ -53,8 +53,8 @@ get_format_bpp(int native)
       bpp = 3;
       break;
    case HAL_PIXEL_FORMAT_RGB_565:
-   case HAL_PIXEL_FORMAT_RGBA_5551:
-   case HAL_PIXEL_FORMAT_RGBA_4444:
+/*   case HAL_PIXEL_FORMAT_RGBA_5551:
+   case HAL_PIXEL_FORMAT_RGBA_4444: */
       bpp = 2;
       break;
    default:
@@ -376,8 +376,8 @@ dri2_create_image_android_native_buffer(_EGLDisplay *disp, _EGLContext *ctx,
       format = __DRI_IMAGE_FORMAT_XBGR8888;
       break;
    case HAL_PIXEL_FORMAT_RGB_888:
-   case HAL_PIXEL_FORMAT_RGBA_5551:
-   case HAL_PIXEL_FORMAT_RGBA_4444:
+/*   case HAL_PIXEL_FORMAT_RGBA_5551:
+   case HAL_PIXEL_FORMAT_RGBA_4444: */
       /* unsupported */
    default:
       _eglLog(_EGL_WARNING, "unsupported native buffer format 0x%x", buf->format);

@@ -58,7 +58,7 @@ ifneq ($(filter r300g, $(MESA_GPU_DRIVERS)),)
 SUBDIRS += drivers/r300
 endif
 ifneq ($(filter r600g, $(MESA_GPU_DRIVERS)),)
-SUBDIRS += drivers/r600
+SUBDIRS += drivers/r600 drivers/radeon
 endif
 ifneq ($(filter radeonsi, $(MESA_GPU_DRIVERS)),)
 SUBDIRS += drivers/radeonsi

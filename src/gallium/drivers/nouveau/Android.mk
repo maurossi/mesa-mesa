@@ -31,7 +31,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(C_SOURCES) \
 	$(NV30_C_SOURCES) \
 	$(NV50_CODEGEN_SOURCES) \
-	$(NV50_C_SOURES) \
+	$(NV50_C_SOURCES) \
 	$(NVC0_CODEGEN_SOURCES) \
 	$(NVC0_C_SOURCES)
 
@@ -41,5 +41,6 @@ LOCAL_C_INCLUDES := $(DRM_TOP) \
 
 LOCAL_MODULE := libmesa_pipe_nouveau
 
+include external/gnustl/libgnustl_shared.mk
 include $(GALLIUM_COMMON_MK)
 include $(BUILD_STATIC_LIBRARY)
