@@ -421,6 +421,7 @@ i915UpdateTextureState(struct intel_context *intel)
          switch (intel->ctx.Texture.Unit[i]._Current->Target) {
          case GL_TEXTURE_1D:
          case GL_TEXTURE_2D:
+         case GL_TEXTURE_EXTERNAL_OES:
          case GL_TEXTURE_CUBE_MAP:
          case GL_TEXTURE_3D:
             ok = i915_update_tex_unit(intel, i, SS3_NORMALIZED_COORDS);
